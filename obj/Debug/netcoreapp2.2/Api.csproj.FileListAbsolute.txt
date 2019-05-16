@@ -1,0 +1,14 @@
+/home/vitor/InternshipPROGETEC/Api/bin/Debug/netcoreapp2.2/Api.deps.json
+/home/vitor/InternshipPROGETEC/Api/bin/Debug/netcoreapp2.2/Api.runtimeconfig.json
+/home/vitor/InternshipPROGETEC/Api/bin/Debug/netcoreapp2.2/Api.runtimeconfig.dev.json
+/home/vitor/InternshipPROGETEC/Api/bin/Debug/netcoreapp2.2/Api.dll
+/home/vitor/InternshipPROGETEC/Api/bin/Debug/netcoreapp2.2/Api.pdb
+/home/vitor/InternshipPROGETEC/Api/obj/Debug/netcoreapp2.2/Api.csprojAssemblyReference.cache
+/home/vitor/InternshipPROGETEC/Api/obj/Debug/netcoreapp2.2/Api.csproj.CoreCompileInputs.cache
+/home/vitor/InternshipPROGETEC/Api/obj/Debug/netcoreapp2.2/Api.RazorAssemblyInfo.cache
+/home/vitor/InternshipPROGETEC/Api/obj/Debug/netcoreapp2.2/Api.RazorAssemblyInfo.cs
+/home/vitor/InternshipPROGETEC/Api/obj/Debug/netcoreapp2.2/Api.AssemblyInfoInputs.cache
+/home/vitor/InternshipPROGETEC/Api/obj/Debug/netcoreapp2.2/Api.AssemblyInfo.cs
+/home/vitor/InternshipPROGETEC/Api/obj/Debug/netcoreapp2.2/Api.RazorTargetAssemblyInfo.cache
+/home/vitor/InternshipPROGETEC/Api/obj/Debug/netcoreapp2.2/Api.dll
+/home/vitor/InternshipPROGETEC/Api/obj/Debug/netcoreapp2.2/Api.pdb
