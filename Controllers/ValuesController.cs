@@ -22,42 +22,69 @@ namespace Api.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public IEnumerable<Cliente> Get([FromBody] string id)
+        public IEnumerable<Cliente> Get( int Id)
         {
             var cliente = from aux in clientes
-                          where aux.Id == id
+                          where aux.Id == Id
                           select aux;
+                  
             return cliente;
         }
+        public bool Verication( int Id){
 
+            bool aux = true;
+            foreach(Cliente c in clientes){
+                if(c.Id == Id){
+                    aux = false;
+                }
+            }
+            return aux;
+
+        }
         // POST api/values
         [HttpPost]
-        public void Post( string id, string nome, string cpf, string cnpj, string telefone, string email, string dataIn, string datUltAlt, string fglFisica)
+        public void Post(int Id, string Nome,string NomeFantasia, string Cpf, string Cnpj, string TelefoneComercial , string InsEstadual, string InsMunicipal, string Celular, string Email, string DataIn, string DatUltAlt, string FglFisica, string Identidade, string Nascimento, string Pai, string Mãe, string Profissao, string OrgaoExpedidor, string Sexo, string EstadoCivil )
         {
-           if (!string.IsNullOrEmpty(nome) && !string.IsNullOrEmpty(id))
+           if (!string.IsNullOrEmpty(Nome))
 			{
-				clientes.Add(new Cliente(id, nome, cpf, cnpj, telefone, email, dataIn, datUltAlt, fglFisica));
-			} 
+                if(Verication(Id)){
+				    clientes.Add(new Cliente(Id, Nome, NomeFantasia, Cpf, Cnpj, TelefoneComercial , InsEstadual, InsMunicipal, Celular, Email, DataIn, DatUltAlt, FglFisica, Identidade, Nascimento, Pai, Mãe, Profissao, OrgaoExpedidor, Sexo, EstadoCivil ));
+                }
+            } 
         }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put([FromBody] string id, string nome, string cpf, string cnpj, string telefone, string email, string dataIn, string datUltAlt, string fglFisica, string tipo, string cidade, string estado, string logradouro, int numero, string complemento, string referencia)
+        // PUT api/values/("{id}/{Nome}/{NomeFantasia}/{Cpf}/{Cnpj}/{TelefoneComercial}/{InsEstadual}/{InsMunicipal}/{Celular}/{Email}/{DataIn}/{DatUltAlt}/{Identidade}/{Nascimento}/{Pai}/{Mãe}/{Profissao}/{OrgaoExpedidor}/{Sexo}/{EstadoCivil}/{Tipo}/{Cidade}/{Estado}/{Logradouro}/{Numero}/{Complemento}/{Referencia
+        [HttpPut]
+        public void Put(int Id, string Nome,string NomeFantasia, string Cpf, string Cnpj, string TelefoneComercial , string InsEstadual, string InsMunicipal, string Celular, string Email, string DataIn, string DatUltAlt, string FglFisica, string Identidade, string Nascimento, string Pai, string Mãe, string Profissao, string OrgaoExpedidor, string Sexo, string EstadoCivil,string Tipo, string Cidade, string Estado, string Logradouro, int Numero, string Complemento, string Referencial )
         {
             var cliente = from aux in clientes
-                          where aux.Id == id
+                          where aux.Id == Id
                           select aux;
             foreach(Cliente c in cliente){
                 if(c != null){
-                    c.Nome = nome;
-                    c.Cpf = cpf;
-                    c.Cnpj = cnpj;
-                    c.Telefone = telefone;
-                    c.Email = email;
-                    c.DataIn = dataIn;
-                    c.DatUltAlt = datUltAlt;
-                    c.FglFisica = fglFisica;
-                    c.End.Add(new Endereco(tipo, cidade, estado, logradouro, numero, complemento, referencia));
+                    c.Id = Id;
+                    c.Nome = Nome;
+                    c.Nome = NomeFantasia;
+                    c.Cpf = Cpf;
+                    c.Cnpj = Cnpj;
+                    c.TelefoneComercial = TelefoneComercial;
+                    c.InsEstadual = InsEstadual;
+                    c.InsMunicipal = InsMunicipal;
+                    c.Celular = Celular;
+                    c.Email = Email;
+                    c.DataIn = DataIn;
+                    c.DatUltAlt = DatUltAlt;
+                    c.FglFisica = FglFisica;
+                    c.Identidade = Identidade;
+                    c.Nascimento = Nascimento;
+                    c.Pai = Pai;
+                    c.Mãe = Mãe;
+                    c.Profissao = Profissao;
+                    c.OrgaoExpedidor = OrgaoExpedidor;
+                    c.Sexo = Sexo;
+                    c.EstadoCivil = EstadoCivil;
+
+                    c.End.Add(new Endereco(Tipo, Cidade, Estado, Logradouro, Numero, Complemento, Referencial));
                 }
                 
             }
@@ -65,9 +92,9 @@ namespace Api.Controllers
          
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete([FromBody] string id)
+        public void Delete(int id)
         {
-            clientes.RemoveAt(clientes.IndexOf(clientes.First(x =>x.Id.Equals(id))));
+            clientes.RemoveAt(clientes.IndexOf(clientes.First(x =>x.Id == id)));
 
         }
     }

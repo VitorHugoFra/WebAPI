@@ -16,15 +16,15 @@ namespace Api.Models
 		public string Referencia { get; set; }
 
 
-		public Endereco(string tipo, string cidade, string estado, string logradouro, int numero, string complemento, string referencia)
+		public Endereco(string Tipo, string Cidade, string Estado, string Logradouro, int Numero, string Complemento, string Referencia)
 		{
-			this.Tipo= tipo;
-			this.Cidade = cidade;
-			this.Estado = estado;
-			this.Logradouro = logradouro;
-			this.Numero = numero;
-			this.Complemento = complemento;
-			this.Referencia = referencia;
+			this.Tipo = Tipo;
+			this.Cidade = Cidade;
+			this.Estado = Estado;
+			this.Logradouro = Logradouro;
+			this.Numero = Numero;
+			this.Complemento = Complemento;
+			this.Referencia = Referencia;
 		}
 	}
 }
