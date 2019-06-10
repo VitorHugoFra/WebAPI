@@ -12,3 +12,5 @@
 /home/vitor/InternshipPROGETEC/Api/obj/Debug/netcoreapp2.2/Api.RazorTargetAssemblyInfo.cache
 /home/vitor/InternshipPROGETEC/Api/obj/Debug/netcoreapp2.2/Api.dll
 /home/vitor/InternshipPROGETEC/Api/obj/Debug/netcoreapp2.2/Api.pdb
+C:\Users\Vitor Hugo França\Source\Repos\VitorHugoFra\WebAPI\obj\Debug\netcoreapp2.2\Api.dll
+C:\Users\Vitor Hugo França\Source\Repos\VitorHugoFra\WebAPI\obj\Debug\netcoreapp2.2\Api.pdb

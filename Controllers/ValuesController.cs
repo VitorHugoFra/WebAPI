@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using System.Text;
+using System.Data.Odbc; //BIBLIOTECA ODBC, NECESSÁRIA PARA CONEXÃO COM O BANCO
+using System.ComponentModel;
+using System.Drawing;
+using System.Globalization;
 using Api.Models;
 
 
@@ -12,90 +17,80 @@ namespace Api.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        private static List<Cliente> clientes = new List<Cliente>();
+		//private static List<Cliente> clientes = new List<Cliente>();
+		Cliente listaProdutos = new Cliente();
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<Cliente>> Get()
         {
-            return clientes;
+			//clientes.ConsultarClientes();
+
+			return listaProdutos.ConsultarClientes(1);
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public IEnumerable<Cliente> Get( int Id)
+        public IEnumerable<Cliente> Get( String Id)
         {
+			List<Cliente> clientes = listaProdutos.ConsultarClientes(1);
             var cliente = from aux in clientes
-                          where aux.Id == Id
+                          where aux.ID_CLIENTE == Id
                           select aux;
                   
             return cliente;
         }
-        public bool Verication( int Id){
+       
 
-            bool aux = true;
-            foreach(Cliente c in clientes){
-                if(c.Id == Id){
-                    aux = false;
-                }
-            }
-            return aux;
-
-        }
         // POST api/values
         [HttpPost]
-        public void Post(int Id, string Nome,string NomeFantasia, string Cpf, string Cnpj, string TelefoneComercial , string InsEstadual, string InsMunicipal, string Celular, string Email, string DataIn, string DatUltAlt, string FglFisica, string Identidade, string Nascimento, string Pai, string Mãe, string Profissao, string OrgaoExpedidor, string Sexo, string EstadoCivil )
+        public void Post(String Nome1, String Nome_Fantasia, String FLG1, String CNPJ1, String Email1, String Tel_Comercial1, String Insc_Estadual1, String Insc_Municipal1, String Identidade1, String Celular1, String Pai1, String Mae1, String Profissao1, String Orgao_Expedidor1, String Sexo1, String Estado_Civil1, String ID_CLIENTE, String COD_TIPO_END, String CIDADE, String UF, String LOGRADOURO, String LOG_NUMERO, String COMPLEMENTO, String REFERENCIA, String BAIRRO, String CEP)
         {
-           if (!string.IsNullOrEmpty(Nome))
+           if (!string.IsNullOrEmpty(Nome) && string.IsNullOrEmpty(Logradouro) )
 			{
-                if(Verication(Id)){
-				    clientes.Add(new Cliente(Id, Nome, NomeFantasia, Cpf, Cnpj, TelefoneComercial , InsEstadual, InsMunicipal, Celular, Email, DataIn, DatUltAlt, FglFisica, Identidade, Nascimento, Pai, Mãe, Profissao, OrgaoExpedidor, Sexo, EstadoCivil ));
-                }
-            } 
+				if (FLG1.ToString == "j" || FLG1.ToString == "J")
+				{
+					listaProdutos.insereJuridica(Nome1, Nome_Fantasia, FLG1, CNPJ1, Email1, Tel_Comercial1, Insc_Estadual1, Insc_Municipal1);
+				}
+				else if(FLG1.ToString == "f" || FLG11.ToString == "F")
+				{
+					listaProdutos.insereFisica(Nome1, FLG1, Identidade1, Email1, Celular1, Pai1, Mae1, Profissao1, Orgao_Expedidor1, Sexo1, Estado_Civil1);
+				}
+				
+			}
+			else
+			{
+				listaProdutos.insereEndereco(ID_CLIENTE, COD_TIPO_END, CIDADE, UF, LOGRADOURO, LOG_NUMERO, COMPLEMENTO, REFERENCIA, BAIRRO, CEP);
+			} 
         }
 
         // PUT api/values/("{id}/{Nome}/{NomeFantasia}/{Cpf}/{Cnpj}/{TelefoneComercial}/{InsEstadual}/{InsMunicipal}/{Celular}/{Email}/{DataIn}/{DatUltAlt}/{Identidade}/{Nascimento}/{Pai}/{Mãe}/{Profissao}/{OrgaoExpedidor}/{Sexo}/{EstadoCivil}/{Tipo}/{Cidade}/{Estado}/{Logradouro}/{Numero}/{Complemento}/{Referencia
         [HttpPut]
-        public void Put(int Id, string Nome,string NomeFantasia, string Cpf, string Cnpj, string TelefoneComercial , string InsEstadual, string InsMunicipal, string Celular, string Email, string DataIn, string DatUltAlt, string FglFisica, string Identidade, string Nascimento, string Pai, string Mãe, string Profissao, string OrgaoExpedidor, string Sexo, string EstadoCivil,string Tipo, string Cidade, string Estado, string Logradouro, int Numero, string Complemento, string Referencial )
+        public void Put(String ID_UPDATE, String Nome, String Nome_Fantasia, String FLG, String Cnpj, String Email, String Tel_Comercial, String Insc_Estadual, String Insc_Municipal, String Identidade, String Celular, String Pai, String Mae, String Profissao,String Orgao_Expedidor,String Sexo, String Estado_Civil,String ID_CLIENTE,String COD_TIPO_END,String CIDADE,String UF,String LOGRADOURO,String LOG_NUMERO,String COMPLEMENTO,String REFERENCIA,String  BAIRRO,String CEP)
         {
-            var cliente = from aux in clientes
-                          where aux.Id == Id
-                          select aux;
-            foreach(Cliente c in cliente){
-                if(c != null){
-                    c.Id = Id;
-                    c.Nome = Nome;
-                    c.Nome = NomeFantasia;
-                    c.Cpf = Cpf;
-                    c.Cnpj = Cnpj;
-                    c.TelefoneComercial = TelefoneComercial;
-                    c.InsEstadual = InsEstadual;
-                    c.InsMunicipal = InsMunicipal;
-                    c.Celular = Celular;
-                    c.Email = Email;
-                    c.DataIn = DataIn;
-                    c.DatUltAlt = DatUltAlt;
-                    c.FglFisica = FglFisica;
-                    c.Identidade = Identidade;
-                    c.Nascimento = Nascimento;
-                    c.Pai = Pai;
-                    c.Mãe = Mãe;
-                    c.Profissao = Profissao;
-                    c.OrgaoExpedidor = OrgaoExpedidor;
-                    c.Sexo = Sexo;
-                    c.EstadoCivil = EstadoCivil;
+			if (!string.IsNullOrEmpty(Nome) && string.IsNullOrEmpty(LOGRADOURO))
+			{
+				if (FLG.ToString == "j" || FLG.ToString == "J")
+				{
+					listaProdutos.insereJuridica(Nome1, Nome_Fantasia, FLG1, CNPJ1, Email1, Tel_Comercial1, Insc_Estadual1, Insc_Municipal1);
+				}
+				else if (FLG.ToString == "f" || FLG.ToString =="F")
+				{
+					listaProdutos.insereFisica(Nome1, FLG1, Identidade1, Email1, Celular1, Pai1, Mae1, Profissao1, Orgao_Expedidor1, Sexo1, Estado_Civil1);
+				}
 
-                    c.End.Add(new Endereco(Tipo, Cidade, Estado, Logradouro, Numero, Complemento, Referencial));
-                }
-                
-            }
-        }
+			}
+			else
+			{
+				listaProdutos.updateEndereco(ID_CLIENTE, COD_TIPO_END, CIDADE, UF, LOGRADOURO, LOG_NUMERO, COMPLEMENTO, REFERENCIA, BAIRRO, CEP);
+			}
+		}
          
-        // DELETE api/values/5
+        /* DELETE api/values/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
             clientes.RemoveAt(clientes.IndexOf(clientes.First(x =>x.Id == id)));
 
-        }
+        }*/
     }
 }
